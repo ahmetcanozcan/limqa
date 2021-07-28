@@ -27,7 +27,7 @@
 
 ## About
 
-Limqa is an abstraction for AMQP client communication using Consumer and Producer design. Limqa is built top of [streadway/amqp](https://github.com/streadway/amqp).
+Limqa is an client abstraction for AMQP communication using Consumer and Producer design. Limqa is built top of [streadway/amqp](https://github.com/streadway/amqp).
 
 ## Installation
 
@@ -58,17 +58,17 @@ func main() {
  base.Connect(uri)
 
  consumer, _ := limqa.NewConsumer(base,"_queue","_exchange",limqa.DeclareExchange(true))
- // If you sure that exchange is declared before
+ // If you are sure that exchange is declared before
  // you don't have to declare it again.
  // consumer can be instantiated without DeclareExchange flag:
  // consumer, _ := limqa.NewConsumer(base,"_queue","_exchange")
 
  producer, _ := limqa.NewProducer(base,"_exchange")
 
- // Produce message
+ // Produce a message
  producer.Produce([]byte("Hello World"))
 
- // Get message by consumer
+ // Get message from the consumer
  msg := consumer.Consume()
 
  fmt.Println(string(msg))
@@ -93,7 +93,7 @@ producer, _  := limqa.NewProducer(base,"_exchange",limqa.Durable(true),limqa.Aut
 
 ## CLI
 
-Limqa can used on cli for message producing or consuming using Limqa library. It can be installed using `go get`
+Limqa can be used by cli for message producing or consuming using Limqa library. It can be installed using `go get`
 
 ```bash
 go get github.com/ahmetcanozcan/limqa/limqa
@@ -111,7 +111,7 @@ limqa consume -queue helo_queue_1 -e hello_world
 # Output : Hello World
 ```
 
-for more help for flag and command use:
+for more help for flags and commands use:
 
 ```powershell
 limqa -help
